@@ -16,11 +16,13 @@
 		"scripts": {
 				"start": "npm run prod",
 				"build": "npm-run-all clean transpile",
-				"server": "node -r dotenv/config ./dist-server/bin/www",
-				"dev": "cross-env NODE_ENV=development npm-run-all build server",
+				"server": "node -r dotenv/config ./dist/bin/www",
+				"dev": "cross-env NODE_ENV=development npm-run-all format build server",
 				"prod": "cross-env NODE_ENV=production npm-run-all build server",
-				"transpile": "babel ./server -d dist-server",
-				"clean": "rimraf dist-server",
+				"transpile": "babel ./server -d dist",
+				"format": "prettier-eslint --write --list-different --prettier-last %INIT_CWD%/server/**/*.js",
+        "clean": "rimraf dist",
+				"prettier-watch": "onchange \"server/**/*.js\" -- npm run format",
 				"watch:dev": "nodemon"
 		},
 		"dependencies": {
@@ -28,12 +30,35 @@
 				"@babel/core": "^7.11.6",
 				"@babel/preset-env": "^7.11.5",
 				"cookie-parser": "~1.4.4",
+				"cross-env": "^7.0.2",
 				"debug": "~2.6.9",
 				"express": "~4.16.1",
-				"morgan": "~1.9.1"
+				"morgan": "~1.9.1",
+				"npm-run-all": "^4.1.5",
+				"rimraf": "^3.0.2"
 		},
 		"devDependencies": {
 				"dotenv": "^8.2.0",
-				"nodemon": "^2.0.5"
+				"editorconfig": "^0.15.3",
+				"eslint": "^7.11.0",
+				"eslint-config-airbnb-base": "^14.2.0",
+				"eslint-plugin-import": "^2.22.1",
+				"husky": "^4.3.0",
+				"lint-staged": "^10.4.0",
+				"nodemon": "^2.0.5",
+				"onchange": "^7.0.2",
+				"prettier-eslint": "^11.0.0",
+				"prettier-eslint-cli": "^5.0.0"
+		},
+		"husky": {
+				"hooks": {
+						"pre-commit": "lint-staged"
+				}
+		},
+		"lint-staged": {
+				"*.js": [
+						"prettier-eslint --write",
+						"git add"
+				]
 		}
 }
