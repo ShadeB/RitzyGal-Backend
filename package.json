@@ -21,7 +21,7 @@
 				"prod": "cross-env NODE_ENV=production npm-run-all build server",
 				"transpile": "babel ./server -d dist",
 				"format": "prettier-eslint --write --list-different --prettier-last %INIT_CWD%/server/**/*.js",
-        "clean": "rimraf dist",
+				"clean": "rimraf dist",
 				"prettier-watch": "onchange \"server/**/*.js\" -- npm run format",
 				"watch:dev": "nodemon"
 		},
@@ -56,9 +56,8 @@
 				}
 		},
 		"lint-staged": {
-				"*.js": [
-						"prettier-eslint --write",
-						"git add"
+				"*.{js,css,md,html}": [
+						"prettier-eslint --write"
 				]
 		}
 }
