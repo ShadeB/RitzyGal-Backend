@@ -1,6 +1,6 @@
 # Contributing to this repository
 
-1. Fork the repository (the fork button is located at the upper right-hand corner of the repo site: `https://github.com/ShadeB/RitzyGal-Backend.git`)
+1.Fork the repository (the fork button is located at the upper right-hand corner of the repo site: `https://github.com/ShadeB/RitzyGal-Backend.git`)
 
 2. When the repository has successfully been forked you will be redirected to your copy of the repository
 

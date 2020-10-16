@@ -4,7 +4,10 @@ const router = Router();
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Express' });
+  res.json({
+    message: 'Connected to index',
+  });
+  next();
 });
 
 export default router;
