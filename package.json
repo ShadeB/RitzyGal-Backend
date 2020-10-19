@@ -17,12 +17,12 @@
 				"start": "npm run prod",
 				"build": "npm-run-all clean transpile",
 				"server": "node -r dotenv/config ./dist/bin/www",
-				"dev": "cross-env NODE_ENV=development npm-run-all format build server",
+				"dev": "cross-env NODE_ENV=development npm-run-all build server",
 				"prod": "cross-env NODE_ENV=production npm-run-all build server",
 				"transpile": "babel ./server -d dist",
 				"format": "prettier-eslint --write --list-different --prettier-last %INIT_CWD%/server/**/*.js",
 				"clean": "rimraf dist",
-				"prettier-watch": "onchange \"server/**/*.js\" -- npm run format",
+				"prettier-watch": "onchange \"server/**/*.js\" -- echo {{changed}}",
 				"watch:dev": "nodemon"
 		},
 		"dependencies": {
@@ -60,7 +60,7 @@
 		},
 		"lint-staged": {
 				"*.{js,css,md,html}": [
-						"prettier-eslint --write"
+						"prettier-eslint --write --prettier-last"
 				]
 		}
 }
