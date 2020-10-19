@@ -5,6 +5,8 @@
  */
 import { createServer } from 'http';
 import debugLib from 'debug';
+import mongoose from 'mongoose';
+import { error } from 'console';
 import app from '../app';
 
 const debug = debugLib('ritzygal-backend:server');
@@ -82,6 +84,27 @@ function onListening() {
   debug(`Listening on ${bind}`);
 }
 
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+const { MONGO_USER, MONGO_PASSWORD, MONGO_CLUSTER } = process.env;
+const { TEST_DB, LIVE_DB } = process.env;
+
+// Use test database when in development else use production databse
+const setDatabase = () => {
+  const { NODE_ENV } = process.env;
+  return NODE_ENV === 'development' ? TEST_DB : LIVE_DB;
+};
+
+const MONGO_URI = `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_CLUSTER}.mongodb.net/${setDatabase()}?retryWrites=true&w=majority`;
+
+// connect to MongoDB database
+mongoose
+  .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    server.listen(port);
+  })
+  .then(() => {
+    server.on('listening', onListening);
+  })
+  .catch((err) => {
+    console.log(err);
+    onError(error);
+  });
