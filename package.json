@@ -1,7 +1,11 @@
 {
 		"name": "ritzygal-backend",
 		"version": "0.0.0",
-		"private": true,
+    "private": true,
+    "engines": {
+      "node": "14.11.0",
+      "npm": "6.14.8"
+    },
 		"nodemonConfig": {
 				"exec": "npm run dev",
 				"watch": [
@@ -16,9 +20,10 @@
 		"scripts": {
 				"start": "npm run prod",
 				"build": "npm-run-all clean transpile",
-				"server": "node -r dotenv/config ./dist/bin/www",
+        "server": "node -r dotenv/config ./dist/bin/www",
+        "server:prod":"node dist/bin/www",
 				"dev": "cross-env NODE_ENV=development npm-run-all build server",
-				"prod": "cross-env NODE_ENV=production npm-run-all build server",
+				"prod": "npm-run-all build server:prod",
 				"transpile": "babel ./server -d dist",
 				"format": "prettier-eslint --write --list-different --prettier-last %INIT_CWD%/server/**/*.js",
 				"clean": "rimraf dist",
