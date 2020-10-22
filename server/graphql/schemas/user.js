@@ -9,18 +9,30 @@ module.exports = buildSchema(`
     admin_user: Boolean
   }
 
+  type AuthPayload {
+    userId: String!
+    token: String!
+    tokenDuration: String!
+  }
+
   input UserInput {
     name: String!
     email: String!
     password: String!
   }
 
-  type Query {
-    getUsers: [User!]!
+  input LoginInput {
+    email: String!
+    password: String!
   }
 
-  typeMutation {
-    createUser(userInput: UserInput)
+  type Query {
+    getUsers: [User!]!
+    login(email: String!, password: String!): AuthPayload
+  }
+
+  type Mutation {
+    signup(userInput: UserInput): AuthPayload
   }
 
   schema {
