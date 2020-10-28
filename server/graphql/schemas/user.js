@@ -9,6 +9,25 @@ module.exports = buildSchema(`
     admin_user: Boolean
   }
 
+  type Product {
+    _id: ID!
+    name: String!
+    description: String!
+    category: [String!]
+    price: Float!
+    sizes: String!
+    image: String!
+    brand: String!
+    instock: Boolean!
+    rating: Float!
+    colors: [Colors] 
+  }
+
+  type Colors {
+    name: String
+    Hex: String
+  }
+
   type AuthPayload {
     userId: String!
     token: String!
