@@ -19,8 +19,7 @@ module.exports = buildSchema(`
     image: String!
     brand: String!
     instock: Boolean!
-    rating: Float!
-    colors: [Colors] 
+    rating: Float! 
   }
 
   type Colors {
@@ -45,6 +44,24 @@ module.exports = buildSchema(`
     password: String!
   }
 
+  input ProductInput {
+    name: String!
+    description: String!
+    category: [String!]
+    price: Float!
+    sizes: String!
+    image: String!
+    brand: String!
+    instock: Boolean!
+    rating: Float!
+    colors: [ColorsInput]
+  }
+
+  input ColorsInput {
+    name: String
+    Hex: String
+  }
+
   type Query {
     getUsers: [User!]!
     login(email: String!, password: String!): AuthPayload
@@ -52,6 +69,7 @@ module.exports = buildSchema(`
 
   type Mutation {
     signup(userInput: UserInput): AuthPayload
+    addProduct(productInput: ProductInput): Product
   }
 
   schema {
