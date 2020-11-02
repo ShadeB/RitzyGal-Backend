@@ -3,6 +3,11 @@ import { compare } from 'bcrypt';
 import User from '../../models/user';
 import Tokenizer from '../../helpers/TokenHelper';
 
+const userRoles = {
+  ADMIN: 'Admin',
+  USER: 'User',
+};
+
 module.exports = {
   signup: async (args) => {
     try {
@@ -15,10 +20,18 @@ module.exports = {
         throw new Error('Account already exists');
       }
 
+      const { ADMIN_EMAIL } = process.env;
+      let role = userRoles.USER;
+
+      if (email === ADMIN_EMAIL) {
+        role = userRoles.ADMIN;
+      }
+
       const user = new User({
         name,
         email,
         password,
+        role,
       });
 
       const result = await user.save();
