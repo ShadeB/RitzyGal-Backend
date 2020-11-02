@@ -46,11 +46,10 @@ module.exports = {
       throw new Error(err);
     }
   },
-  login: async (args, req) => {
+  login: async (args) => {
     const Arguments = { ...args };
     const { email, password } = Arguments;
     let AuthPayload = {};
-    let validToken = false;
     const loginErrorMessage = 'Incorrect login credentials, please try again';
 
     const userExists = await User.findOne({ email });
@@ -58,20 +57,15 @@ module.exports = {
     if (!userExists) {
       throw new Error(loginErrorMessage);
     }
-
     const passwordMatch = await compare(password, userExists.password);
-
     if (!passwordMatch) {
       throw new Error(loginErrorMessage);
     }
 
-    validToken = await Tokenizer.verifyAccessToken(req);
-
-    if (!validToken) {
-      AuthPayload = await Tokenizer.signAccessToken(userExists.id);
-    }
-
     AuthPayload = await Tokenizer.signAccessToken(userExists.id);
+    if (!AuthPayload) {
+      throw Error('Login failed. Please try again');
+    }
     return AuthPayload;
   },
 };
