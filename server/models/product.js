@@ -12,6 +12,7 @@ const ProductSchema = new Schema({
   rating: { type: mongoose.Types.Decimal128, required: true },
   colors: [
     {
+      _id: false,
       name: { type: String, required: true },
       Hex: { type: String, required: true },
     },
