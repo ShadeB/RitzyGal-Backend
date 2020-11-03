@@ -4,6 +4,7 @@ module.exports = {
     es2021: true,
     node: true,
     browser: true,
+    mocha: true,
   },
   extends: ['airbnb-base'],
   parserOptions: {
