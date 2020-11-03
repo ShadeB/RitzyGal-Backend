@@ -6,7 +6,7 @@ module.exports = buildSchema(`
     name: String!
     email: String!
     password: String!
-    admin_user: Boolean
+    role: String!
   }
 
   type Product {
