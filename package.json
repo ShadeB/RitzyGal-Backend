@@ -1,12 +1,12 @@
 {
 		"name": "ritzygal-backend",
 		"version": "0.0.0",
-    "private": true,
-    "engines": {
-      "node": "14.11.0",
-      "npm": "6.14.8"
-    },
-    "main": "dist/bin/www.js",
+		"private": true,
+		"engines": {
+				"node": "14.11.0",
+				"npm": "6.14.8"
+		},
+		"main": "dist/bin/www.js",
 		"nodemonConfig": {
 				"exec": "npm run dev",
 				"watch": [
@@ -29,7 +29,8 @@
 				"format": "prettier-eslint --write --list-different --prettier-last %INIT_CWD%/server/**/*.js",
 				"clean": "rimraf dist",
 				"prettier-watch": "onchange \"server/**/*.js\" -- echo {{changed}}",
-				"watch:dev": "nodemon"
+        "watch:dev": "nodemon",
+        "test": "mocha tests/*.test.js --require @babel/register"
 		},
 		"dependencies": {
 				"@babel/cli": "^7.11.6",
@@ -49,6 +50,7 @@
 				"rimraf": "^3.0.2"
 		},
 		"devDependencies": {
+				"chai": "^4.2.0",
 				"dotenv": "^8.2.0",
 				"editorconfig": "^0.15.3",
 				"eslint": "^7.11.0",
@@ -56,10 +58,12 @@
 				"eslint-plugin-import": "^2.22.1",
 				"husky": "^4.3.0",
 				"lint-staged": "^10.4.0",
+				"mocha": "^8.2.0",
 				"nodemon": "^2.0.5",
 				"onchange": "^7.0.2",
 				"prettier-eslint": "^11.0.0",
-				"prettier-eslint-cli": "^5.0.0"
+				"prettier-eslint-cli": "^5.0.0",
+				"supertest": "^6.0.0"
 		},
 		"husky": {
 				"hooks": {
@@ -72,6 +76,3 @@
 				]
 		}
 }
-
-
-
