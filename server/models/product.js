@@ -10,7 +10,12 @@ const ProductSchema = new Schema({
   brand: { type: String, required: true },
   instock: { type: Boolean, required: true },
   rating: { type: mongoose.Types.Decimal128, required: true },
-  colors: { type: [{ name: String, hex: String }], required: true },
+  colors: [
+    {
+      name: { type: String, required: true },
+      Hex: { type: String, required: true },
+    },
+  ],
 });
 
-module.exports(mongoose.model('Product', ProductSchema));
+module.exports = mongoose.model('Product', ProductSchema);
