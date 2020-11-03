@@ -1,0 +1,17 @@
+POST http://localhost:3000/graphql
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+mutation($name: String!, $email: String!, $password: String!) {
+  signup(userInput: {name: $name, email: $email, password: $password}) {
+    userId
+    token
+    tokenDuration
+  }
+}
+
+{
+  "name": "ADMIN",
+  "email": "{{$dotenv ADMIN_EMAIL}}",
+  "password": "{{$dotenv ADMIN_PASSWORD}}"
+}

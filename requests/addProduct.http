@@ -1,0 +1,36 @@
+POST http://localhost:3000/graphql
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+Authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmEwNDNjZDY4Yjc5NTJhNTQ0NGFjZGQiLCJpYXQiOjE2MDQ0MDY3ODAsImV4cCI6MTYwNDQxNzU4MH0.H7HCssHIgNiN_abNVgL_tXLx2OHfyJPhfVQJ865KaFg
+
+mutation {
+  addProduct(productInput: {
+  name: "top dress",
+  description: "short top dress",
+  category: ["dress", "apparel"],
+  price: 259.99,
+  sizes: "medium",
+  image: "https://unsplash.com/photos/tY3A3H8mAw8",
+  brand: "Unsplash",
+  instock: true,
+  rating: 4.3,
+  colors: [{ name: "yellow", Hex: "#FF0000" }, { name: "red", Hex: "#333" }],
+}) {
+    _id
+    name
+    description
+    category
+    price
+    sizes
+    image
+    brand
+    instock
+    rating
+    colors {
+      Hex
+      name
+    }
+  }
+}
+
+

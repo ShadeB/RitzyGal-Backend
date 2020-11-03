@@ -1,0 +1,16 @@
+POST http://localhost:3000/graphql
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+query($email: String!, $password: String!) {
+  login(email: $email, password: $password) {
+    userId
+    token
+    tokenDuration
+  }
+}
+
+{
+  "email": "{{$dotenv ADMIN_EMAIL}}",
+  "password": "{{$dotenv ADMIN_PASSWORD}}"
+}
