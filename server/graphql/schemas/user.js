@@ -11,15 +11,15 @@ module.exports = buildSchema(`
 
   type Product {
     _id: ID!
-    name: String!
-    description: String!
-    category: [String!]
-    price: Float!
-    sizes: String!
-    image: String!
-    brand: String!
-    instock: Boolean!
-    rating: Float! 
+    name: String
+    description: String
+    category: [String]
+    price: Float
+    sizes: String
+    image: String
+    brand: String
+    instock: Boolean
+    rating: Float 
     colors: [Colors]
   }
 
