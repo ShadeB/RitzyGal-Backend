@@ -20,6 +20,7 @@ module.exports = buildSchema(`
     brand: String!
     instock: Boolean!
     rating: Float! 
+    colors: [Colors]
   }
 
   type Colors {
