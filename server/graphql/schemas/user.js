@@ -66,6 +66,7 @@ module.exports = buildSchema(`
   type Query {
     getUsers: [User!]!
     login(email: String!, password: String!): AuthPayload
+    listAllProducts: [Product!]!
   }
 
   type Mutation {
