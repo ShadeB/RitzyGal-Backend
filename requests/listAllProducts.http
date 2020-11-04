@@ -1,0 +1,22 @@
+POST http://localhost:3000/graphql
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+query {
+  listAllProducts {
+    _id
+    name
+    description
+    category
+    price
+    sizes
+    image
+    brand
+    instock
+    rating
+    colors {
+      Hex
+      name
+    }
+  }
+}
