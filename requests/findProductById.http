@@ -1,0 +1,27 @@
+POST http://localhost:3000/graphql
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+query($id: ID!) {
+  findProductById(id: $id) {
+    _id
+    name
+    description
+    category
+    price
+    sizes
+    image
+    brand
+    instock
+    instock
+    rating
+    colors {
+      name
+      Hex
+    }
+  }
+}
+
+{
+  "id": "5fa146ab5690b14ea4fdca8c"
+}
