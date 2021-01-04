@@ -1,7 +1,14 @@
+import { Types } from 'mongoose';
 import Product from '../../models/product';
 
 module.exports = {
   findProductById: async ({ id }) => {
+    const isValidId = Types.ObjectId.isValid(id);
+
+    if (!isValidId) {
+      throw Error('This is not a valid ID!');
+    }
+
     const result = await Product.findById(id);
 
     if (!result) {
